@@ -1,8 +1,10 @@
 package org.ldv.melun.sio.swingpac;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +28,11 @@ public class FenetreMain extends JFrame implements ActionListener {
   static final String ACTION_QUITTER = "Quitter";
 
   static final String ACTION_GO = "Go";
-
+  
+  static final String ACTION_RESTART = "Restart";
+  
+  static final String ACTION_PAUSE = "Pause";
+  
   private static final String PACKAGE_BIDULES = "org.ldv.melun.sio.swingpac.etudiants";
 
   private static final int TAILLE_BIDULE = 30;
@@ -75,16 +81,32 @@ public class FenetreMain extends JFrame implements ActionListener {
     menuBar.add(menuFichier);
     JMenu jeu = new JMenu("Jeu");
     jeu.setMnemonic(KeyEvent.VK_J);
-    JMenuItem mn = new JMenuItem("go", KeyEvent.VK_G);
+    JMenuItem mn = new JMenuItem("Go", KeyEvent.VK_G);
     mn.setActionCommand(ACTION_GO);
     // l'instance de cette fenêtre est à l'écoute d'une action sur ce menu
     mn.addActionListener(this);
     jeu.add(mn);
+    
+
+    JMenuItem Pause = new JMenuItem("Pause", KeyEvent.VK_P);
+    Pause.setActionCommand(ACTION_PAUSE);
+    // l'instance de cette fenêtre est à l'écoute d'une action sur ce menu
+    Pause.addActionListener(this);
+    jeu.add(Pause);
+    menuBar.add(jeu);
+    
+    JMenuItem Restart = new JMenuItem("Restart", KeyEvent.VK_R);
+    Restart.setActionCommand(ACTION_RESTART);
+    // l'instance de cette fenêtre est à l'écoute d'une action sur ce menu
+    Restart.addActionListener(this);
+    jeu.add(Restart);
     menuBar.add(jeu);
 
     // TODO : ajouter une commande Pause qui stoppe le timer de tous les objets
     // Bidule.
 
+    
+    
     // on ajoute la barre de menu à la fenêtre
     setJMenuBar(menuBar);
 
@@ -127,6 +149,34 @@ public class FenetreMain extends JFrame implements ActionListener {
     if (!"".equals(erreurs))
       JOptionPane.showMessageDialog(null, erreurs);
   }
+  
+  private void pause () {
+	  List<Bidule> bidulesPresent = new ArrayList<Bidule>();
+
+	    for (Component obj : this.getContentPane().getComponents()) {
+	      if (obj instanceof Bidule && obj != this)
+	     
+	          bidulesPresent.add((Bidule) obj);   
+	    }
+	    for (Bidule bidules : bidulesPresent){
+	    	bidules.stop();
+	    }
+   
+  }
+  
+  private void restart () {
+	  List<Bidule> bidulesPresent = new ArrayList<Bidule>();
+
+	    for (Component obj : this.getContentPane().getComponents()) {
+	      if (obj instanceof Bidule && obj != this)
+	     
+	          bidulesPresent.add((Bidule) obj);   
+	    }
+	    for (Bidule bidules : bidulesPresent){
+	    	bidules.start();
+	    }
+   
+  }
 
   /**
    * Appelé par les commandes du menu
@@ -139,6 +189,12 @@ public class FenetreMain extends JFrame implements ActionListener {
     } else if (action.equals(ACTION_GO)) {
       go();
     }
+    else if (action.equals(ACTION_PAUSE)) {
+      pause();
+      }
+    else if (action.equals(ACTION_RESTART)) {
+      restart();
+        }
   }
 
 }// FentreMain
