@@ -16,7 +16,7 @@ import javax.swing.Timer;
 /**
  * Modèle générique d'objet se déplacant dans la fenêtre (la scene)
  * 
- * @date 2013-09-09
+ * @date 2013-09-10
  * @author kpu (lycée Léonard de Vinci - Melun - SIO-SLAM)
  * 
  *         TODO: mémoriser le nombre d'impacts d'objet bidules réalisés (pas
