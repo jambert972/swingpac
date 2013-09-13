@@ -124,7 +124,7 @@ public class FenetreMain extends JFrame implements ActionListener {
   }
 
 
-	// TODO Auto-generated method stub
+
 	
 
 /**

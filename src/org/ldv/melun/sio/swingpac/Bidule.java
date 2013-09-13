@@ -19,10 +19,9 @@ import javax.swing.Timer;
  * @date 2013-09-10
  * @author kpu (lycée Léonard de Vinci - Melun - SIO-SLAM)
  * 
- *         TODO: mémoriser le nombre d'impacts d'objet bidules réalisés (pas
- *         subis)
  *         
- *         TODO : reféfinir toString afin de remonter des informations pertinentes 
+ *         
+ *         TODO : redéfinir toString afin de remonter des informations pertinentes 
  * 
  *         TODO (plus difficile) : charger des images dans un tableau et
  *         appliquer la bonne image (dans paintComponent) en fonction de la
@@ -178,22 +177,35 @@ public void setName(String name) {
    * appelé après un déplacement. Vérifie si impacts, et préviens les objets
    * touchés.
    */
+ // Mémoriser le nombre d'impacts d'objet bidules réalisés (Compteur): FAIT !!
+		  
+  int compteur;
   private void manageCollisions() {
     // ai-je touché d'autres bidules ?
     List<Bidule> bidules = getCollisions();
+   
     for (Bidule bidule : bidules) {
-      if (bidule.isGoDown()
-          && bidule.getY() + bidule.getHeight() >= this.getY())
-        bidule.tuEstouchePar(this);
-      else if (bidule.isGoUp()
-          && bidule.getY() <= this.getY() + this.getHeight())
-        bidule.tuEstouchePar(this);
-      else if (bidule.isGoRight()
-          && bidule.getX() + bidule.getWidth() >= this.getX())
-        bidule.tuEstouchePar(this);
-      else if (bidule.isGoLeft()
-          && bidule.getX() <= this.getWidth() + this.getX())
-        bidule.tuEstouchePar(this);
+    	
+    	if (bidule.isGoDown() && bidule.getY() + bidule.getHeight() >= this.getY()){
+    			bidule.tuEstouchePar(this);
+    		    compteur++;
+    	}
+    		
+    		else if (bidule.isGoUp() && bidule.getY() <= this.getY() + this.getHeight()){
+    			bidule.tuEstouchePar(this);
+    			compteur++;
+    		}
+    		
+    		else if (bidule.isGoRight() && bidule.getX() + bidule.getWidth() >= this.getX()){
+    			bidule.tuEstouchePar(this);
+    			compteur++;
+    		}
+    		
+    		
+    		else if (bidule.isGoLeft() && bidule.getX() <= this.getWidth() + this.getX()){
+    			bidule.tuEstouchePar(this);
+    			compteur++;
+    		}
     }
   }
 
@@ -205,7 +217,7 @@ public void setName(String name) {
     // le vainqueur est celui qui reste seul
     if (aloneInTheWorld()) {
       timer.stop();
-      JOptionPane.showMessageDialog(getParent(), "GAGNÉ : " + name);
+      JOptionPane.showMessageDialog(getParent(), "GAGNÉ : " + name + " \n Il y a eu " + compteur + " collisions.");
       getParent().remove(this);
     }
   }
