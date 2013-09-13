@@ -1,6 +1,8 @@
 package org.ldv.melun.sio.swingpac;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -88,6 +90,9 @@ public class FenetreMain extends JFrame implements ActionListener {
     jeu.add(mn);
     
 
+    // Ajouter une commande Pause qui stoppe le timer de tous les objets: Fait !
+    
+
     JMenuItem Pause = new JMenuItem("Pause", KeyEvent.VK_P);
     Pause.setActionCommand(ACTION_PAUSE);
     // l'instance de cette fenêtre est à l'écoute d'une action sur ce menu
@@ -101,11 +106,6 @@ public class FenetreMain extends JFrame implements ActionListener {
     Restart.addActionListener(this);
     jeu.add(Restart);
     menuBar.add(jeu);
-
-    // TODO : ajouter une commande Pause qui stoppe le timer de tous les objets
-    // Bidule.
-
-    
     
     // on ajoute la barre de menu à la fenêtre
     setJMenuBar(menuBar);
@@ -113,13 +113,21 @@ public class FenetreMain extends JFrame implements ActionListener {
     // l'instance de cette fenêtre est à l'écoute d'une action sur ce menu
     mnItemQuitter.addActionListener(this);
 
-    // TODO : définir une taille en fonction de la taille de l'écran
-    // par exemple le 1/4 de l'écran pour des grands écrans, ou 1/2 ...
-    setSize(500, 500);
+    
+    //Définir une taille en fonction de la taille de l'écran: Fait !!!
+    
+    setSize(500,500);
+    setExtendedState(Frame.MAXIMIZED_BOTH);
+   
+    
 
   }
 
-  /**
+
+	// TODO Auto-generated method stub
+	
+
+/**
    * Injecte des objets Bidule dans cette instance de fenêtre
    */
   private void go() {
