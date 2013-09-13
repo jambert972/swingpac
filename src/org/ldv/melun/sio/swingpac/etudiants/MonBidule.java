@@ -1,6 +1,7 @@
 package org.ldv.melun.sio.swingpac.etudiants;
 
 import java.awt.Color;
+
 import org.ldv.melun.sio.swingpac.Bidule;
 
 public class MonBidule extends Bidule {
@@ -22,7 +23,7 @@ public class MonBidule extends Bidule {
       if (isGoLeft())
         goOnRight();
       else
-        goOnLeft();""
+        goOnLeft();
   }
 
 }

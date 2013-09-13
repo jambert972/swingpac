@@ -42,11 +42,21 @@ public class Bidule extends JPanel {
   private int incY, incX;
 
   /**
-   * nom de l'instance (TODO : pourrait être pris par défaut via getClass().getName()...)
+   * Pourrait être pris par défaut via getClass().getName()...): FAIT !!
    */
-  private String name;
+  
 
-  /**
+private String name;
+
+  public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+/**
    * utilisé pour déterminer une valeur 'aléatoire' du DELAI ayant un impact sur
    * le déplacement
    */
